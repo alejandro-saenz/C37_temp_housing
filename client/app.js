@@ -1,7 +1,7 @@
-const server = require('./server');
+const server = require('../server');
 
 // Imports db
-require('./db/mongoose');
+require('../db/mongoose');
 
 const port = process.env.PORT || 8080;
 
