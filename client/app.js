@@ -1,0 +1,10 @@
+const server = require('./server');
+
+// Imports db
+require('./db/mongoose');
+
+const port = process.env.PORT || 8080;
+
+server.listen(port, () => {
+  console.log(`Express server is up on port ${port}`);
+});

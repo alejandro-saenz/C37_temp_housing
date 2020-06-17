@@ -4,13 +4,12 @@ const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 const sendWelcomeEmail = (email, firstName) => {
-  const welcome = `<h1>Hello ${firstName}, we are so glad to have you join our family at Housed!</h1>`;
   sgMail.send({
     to: email,
     from: `${process.env.FROM_EMAIL}`,
     subject: 'Thanks for signing up.',
-    // text: `Hi ${name}! Welcome to your task manager api.`
-    html: welcome
+    text: `Hi ${name}! Welcome to Housed!`
+    // html: welcome
   });
 };
 

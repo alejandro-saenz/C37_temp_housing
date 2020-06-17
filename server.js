@@ -1,19 +1,27 @@
 const express = require('express');
-const listingRoutes = require('./routes/listings')
-const userRoutes = require('./routes/users')
-const bookingRoutes = require('./routes/bookings')
-const mongoose = require('mongoose')
-require('./db/mongoose');
+const cors = require('cors');
+const morgan = require('morgan');
 
-const app = express();
-const port = process.env.PORT || 8080;
+//Import routes
+const listingRouter = require('./routes/listings');
+const userRouter = require('./routes/users');
+const bookingRouter = require('./routes/bookings');
 
-app.use(express.json());
+const server = express();
 
-app.use(listingRoutes);
-app.use(bookingRoutes);
-app.use(userRoutes);
+server.use(cors());
+server.use(express.json());
+server.use(morgan('combined'));
 
-app.listen(port, () => {
-  console.log(`Express server is up on port ${port}`);
-});
+// server.use((req, res) => {
+//   console.log(req.method, req.path);
+//   res
+//     .status(503)
+//     .json({ error: 'Site is down for maintenance, check back soon.' });
+// });
+
+server.use(listingRouter);
+server.use(userRouter);
+server.use(bookingRouter);
+
+module.exports = server;
